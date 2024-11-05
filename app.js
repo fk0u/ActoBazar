@@ -45,8 +45,26 @@ function goToMenu() {
 
 // Pantun acak tentang menu bazar
 const pantunList = [
-  "Udang Keju lezat dan manis, di bazar kami paling habis!",
-  "Crispy Potato Balls renyah menggoda, bikin nagih setiap coba!"
+  // Pantun untuk Pink Lava
+  "Pergi ke taman sore hari, Pink Lava segar bikin happy!",
+  "Lihat pelangi warna cerah, Pink Lava manis bikin cerah!",
+  "Pink Lava segar tiada dua, minuman ini pasti buat suka!",
+  "Pink Lava segar terasa, sekali coba buat ceria!",
+  "Burung kenari hinggap di rawa, minum Pink Lava, enak terasa!",
+
+  // Pantun untuk Crispy Potato Ball
+  "Crispy Potato Ball renyahnya mantap, nikmatnya bikin tak terlewat!",
+  "Ke pasar beli kembang, Crispy Potato Ball enak tak terbilang!",
+  "Potato Ball renyah, gurihnya terasa, coba sekali pasti tak sia-sia!",
+  "Crispy Potato Ball lezat menggoda, satu gigitan bikin bahagia!",
+  "Potato Ball renyah dan gurih, makin nikmat tak perlu risih!",
+
+  // Pantun untuk Udang Keju
+  "Udang Keju lezat menggoda, di bazar kami paling juara!",
+  "Udang Keju keju meleleh, bikin lidah jadi terperanjat!",
+  "Keju leleh bertemu udang, rasa enak bikin senang!",
+  "Makan Udang Keju meleleh di mulut, pasti bikin pengen terus!",
+  "Udang Keju gurih dan lezat, sekali coba bikin terpikat!"
 ];
 function showRandomPantun() {
   const randomPantun = pantunList[Math.floor(Math.random() * pantunList.length)];
