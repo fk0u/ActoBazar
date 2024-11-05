@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Udang Keju",
+    "name": "Udang Keju isi 3",
     "category": "Jajanan",
     "image": "udang_keju.webp",
     "price": 10000,
@@ -9,10 +9,10 @@
   },
   {
     "id": "2",
-    "name": "Crispy Potato Balls",
+    "name": "Crispy Potato Balls isi 8",
     "category": "Jajanan",
     "image": "crispy_potato_balls.webp",
-    "price": 15000,
+    "price": 10000,
     "status": "Habis"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Pink Lava",
     "category": "Minuman",
     "image": "pink_lava.png",
-    "price": 5000,
+    "price": 6000,
     "status": "Habis"
   },
   {
