@@ -5,7 +5,7 @@
     "category": "Jajanan",
     "image": "udang_keju.webp",
     "price": 10000,
-    "status": "Tersedia"
+    "status": "Habis"
   },
   {
     "id": "2",
@@ -13,7 +13,7 @@
     "category": "Jajanan",
     "image": "crispy_potato_balls.webp",
     "price": 10000,
-    "status": "Tersedia"
+    "status": "Habis"
   },
   {
     "id": "3",
@@ -21,7 +21,7 @@
     "category": "Minuman",
     "image": "pink_lava.png",
     "price": 6000,
-    "status": "Tersedia"
+    "status": "Habis"
   },
   {
     "id": "4",
@@ -29,6 +29,6 @@
     "category": "Jajanan",
     "image": "stik_bawang.jpg",
     "price": 7000,
-    "status": "Tersedia"
+    "status": "Habis"
   }
 ]
