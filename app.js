@@ -233,3 +233,14 @@ function initializeMenu() {
 
 // Memulai aplikasi dengan halaman greetings, lalu menampilkan menu utama
 initializeMenu();
+
+// Nonaktifkan klik kanan
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Nonaktifkan tombol shortcut tertentu
+document.onkeydown = function(e) {
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'I')) {
+    e.preventDefault();
+    alert("View source disabled");
+  }
+};
