@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bazar XI PPLG 1</title>
+  <!-- Tailwind CSS dan Font Retro -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to right, #fbc2eb, #a18cd1);
+      color: #333;
+    }
+    .glass-box {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .slide-up {
+      animation: slideUp 0.7s ease-in-out;
+    }
+    .button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+    }
+    .retro-card {
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      border: 3px solid #ff006e;
+      border-radius: 15px;
+      padding: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .retro-title {
+      color: #ff006e;
+      font-size: 1.1rem;
+    }
+    .retro-price {
+      color: #8338ec;
+      font-size: 0.9rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="font-sans bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-gray-800">
+
+  <!-- Audio Backsound -->
+  <audio id="background-music" src="./assets/uploads/retro.mp3" autoplay loop></audio>
+  
+  <!-- Kontrol Musik -->
+  <div class="fixed top-6 right-4 z-50">
+    <button onclick="toggleMusic()" id="music-control" class="bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-500 transition transform hover:scale-105">🔊 Music</button>
+  </div>
+
+  <!-- Halaman Greetings -->
+  <div id="greeting-page" class="flex items-center justify-center h-screen text-center text-white fade-in p-4">
+    <div class="glass-box shadow-lg w-full max-w-sm mx-auto text-center">
+      <div id="greeting-animation" class="mb-4 w-full h-24 mx-auto"></div>
+      <h1 class="text-3xl font-bold mb-2">Halo!</h1>
+      <p class="text-lg mb-4">Selamat datang di <span class="text-yellow-300 font-semibold">Bazar XI PPLG 1</span></p>
+      <button onclick="goToMenu()" class="mt-6 bg-yellow-400 text-gray-800 font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-yellow-500 transition transform hover:scale-105 duration-300 button">Lanjutkan</button>
+    </div>
+  </div>
+
+  <!-- Halaman Menu Utama -->
+  <div id="main-page" class="container mx-auto p-4 hidden slide-up text-center">
+
+    <!-- Header Menu -->
+    <header class="text-center mb-6 mt-12"> <!-- Margin top ditambahkan -->
+      <h1 class="text-4xl font-bold text-indigo-700">Menu Bazar <span class="text-pink-500">XI PPLG 1</span></h1>
+      <p id="pantun" class="text-lg text-gray-700 italic mt-2 mb-4"></p>
+    </header>
+
+    <!-- Container untuk daftar menu -->
+    <div id="menu-container" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 px-4">
+      <!-- Menu items akan dimasukkan di sini oleh JavaScript -->
+    </div>
+
+    <!-- Tombol keranjang di bagian bawah -->
+    <div id="total-popup" class="fixed bottom-0 right-0 m-4 hidden">
+      <button class="bg-pink-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-pink-600 button" onclick="openCart()">Keranjang Saya</button>
+    </div>
+  </div>
+
+  <!-- Modal untuk Detail Keranjang -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+      <h2 class="text-lg font-bold mb-4 text-center text-indigo-700">Keranjang Pembelian</h2>
+      <div id="cart-items" class="mb-4"></div>
+      <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full mb-2 p-2 border border-gray-300 rounded">
+      <input type="text" id="user-class" placeholder="Kelas" class="w-full mb-2 p-2 border border-gray-300 rounded">
+      <input type="text" id="user-whatsapp" placeholder="Nomor WhatsApp" class="w-full mb-4 p-2 border border-gray-300 rounded">
+      <button class="bg-green-500 text-white px-4 py-2 rounded w-full hover:bg-green-600 button" onclick="proceedCheckout()">Checkout Sekarang</button>
+      <button class="bg-gray-500 text-white px-4 py-2 rounded w-full mt-2 hover:bg-gray-600 button" onclick="closeCart()">Batal</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

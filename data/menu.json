@@ -1,0 +1,17 @@
+[
+    {
+      "id": "1",
+      "name": "Udang Keju",
+      "price": 10000,
+      "status": "Tersedia",
+      "image": "udang_keju.webp"
+    },
+    {
+      "id": "2",
+      "name": "Crispy Potato Balls",
+      "price": 10000,
+      "status": "Tersedia",
+      "image": "crispy_potato_balls.webp"
+    }
+  ]
+  
