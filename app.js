@@ -5,14 +5,13 @@ lottie.loadAnimation({
   renderer: 'svg',
   loop: true,
   autoplay: true,
-  path: 'https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json'  // URL animasi Lottie
+  path: 'https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json'
 });
 
 // Memulai dan mengatur kontrol untuk musik
 const backgroundMusic = document.getElementById('background-music');
-let musicPlaying = true; // Set default musicPlaying menjadi true
+let musicPlaying = true;
 
-// Fungsi untuk mengontrol toggle musik
 function toggleMusic() {
   musicPlaying = !musicPlaying;
   if (musicPlaying) {
@@ -24,12 +23,17 @@ function toggleMusic() {
   }
 }
 
-// Memastikan musik langsung mulai saat halaman dimuat
-window.addEventListener('DOMContentLoaded', () => {
+// Memastikan musik langsung mulai saat halaman dimuat atau setelah interaksi pertama
+function startMusic() {
   if (musicPlaying) {
-    backgroundMusic.play();
+    backgroundMusic.play().catch(() => {
+      document.body.addEventListener('click', startMusic, { once: true });
+    });
   }
-});
+}
+
+// Memanggil startMusic saat halaman selesai dimuat
+window.addEventListener('DOMContentLoaded', startMusic);
 
 // Fungsi untuk berpindah dari halaman greetings ke halaman menu
 function goToMenu() {
@@ -72,9 +76,9 @@ function displayMenu(menuData) {
     menuCard.classList.add('retro-card', 'text-center', 'transition', 'duration-200', 'transform', 'hover:scale-105');
     menuCard.innerHTML = `
       <img src="./assets/uploads/${item.image}" alt="${item.name}" class="w-full h-32 object-cover mb-2 rounded-lg">
-      <h3 class="retro-title mb-2">${item.name}</h3>
-      <p class="retro-price mb-4">Harga: Rp${item.price}</p>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded w-full ${item.status === "Habis" ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"}"
+      <h3 class="txt retro-title mb-2">${item.name}</h3>
+      <p class="txt1 retro-price mb-4">Harga: Rp${item.price}</p>
+      <button class="buttonbuy ${item.status === "Habis" ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"}"
         onclick="addToCart('${item.id}')"
         ${item.status === "Habis" ? "disabled" : ""}>${item.status === "Habis" ? "Habis" : "Tambah ke Keranjang"}</button>
     `;
