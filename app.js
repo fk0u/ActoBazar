@@ -10,8 +10,9 @@ lottie.loadAnimation({
 
 // Memulai dan mengatur kontrol untuk musik
 const backgroundMusic = document.getElementById('background-music');
-let musicPlaying = true;
+let musicPlaying = true; // Set default musicPlaying menjadi true
 
+// Fungsi untuk mengontrol toggle musik
 function toggleMusic() {
   musicPlaying = !musicPlaying;
   if (musicPlaying) {
@@ -22,6 +23,13 @@ function toggleMusic() {
     document.getElementById('music-control').innerText = '🔊 Music On';
   }
 }
+
+// Memastikan musik langsung mulai saat halaman dimuat
+window.addEventListener('DOMContentLoaded', () => {
+  if (musicPlaying) {
+    backgroundMusic.play();
+  }
+});
 
 // Fungsi untuk berpindah dari halaman greetings ke halaman menu
 function goToMenu() {
