@@ -66,7 +66,6 @@ function saveMenuData(menuData) {
   localStorage.setItem('menuData', JSON.stringify(menuData));
 }
 
-// Menampilkan menu di halaman utama
 function displayMenu(menuData) {
   const menuContainer = document.getElementById('menu-container');
   menuContainer.innerHTML = '';
@@ -76,9 +75,10 @@ function displayMenu(menuData) {
     menuCard.classList.add('retro-card', 'text-center', 'transition', 'duration-200', 'transform', 'hover:scale-105');
     menuCard.innerHTML = `
       <img src="./assets/uploads/${item.image}" alt="${item.name}" class="w-full h-32 object-cover mb-2 rounded-lg">
-      <h3 class="txt retro-title mb-2">${item.name}</h3>
-      <p class="txt1 retro-price mb-4">Harga: Rp${item.price}</p>
-      <button class="buttonbuy ${item.status === "Habis" ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"}"
+      <h3 class="retro-title mb-2">${item.name}</h3>
+      <p class="retro-price mb-2">Harga: Rp${item.price}</p>
+      <p class="text-gray-700 mb-4 font-semibold">${item.status}</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded w-full ${item.status === "Habis" ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"}"
         onclick="addToCart('${item.id}')"
         ${item.status === "Habis" ? "disabled" : ""}>${item.status === "Habis" ? "Habis" : "Tambah ke Keranjang"}</button>
     `;
