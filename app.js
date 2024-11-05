@@ -84,12 +84,15 @@ function saveMenuData(menuData) {
   localStorage.setItem('menuData', JSON.stringify(menuData));
 }
 
-// Menampilkan menu di halaman utama
-function displayMenu(menuData) {
+// Menampilkan menu di halaman utama berdasarkan kategori
+function displayMenu(menuData, category = "Semua") {
   const menuContainer = document.getElementById('menu-container');
   menuContainer.innerHTML = '';
 
-  menuData.forEach(item => {
+  // Filter menu sesuai kategori
+  const filteredMenu = category === "Semua" ? menuData : menuData.filter(item => item.category === category);
+
+  filteredMenu.forEach(item => {
     const menuCard = document.createElement('div');
     menuCard.classList.add('retro-card', 'text-center', 'transition', 'duration-200', 'transform', 'hover:scale-105');
     menuCard.innerHTML = `
@@ -102,6 +105,12 @@ function displayMenu(menuData) {
     `;
     menuContainer.appendChild(menuCard);
   });
+}
+
+// Fungsi untuk filter menu berdasarkan kategori
+function filterMenu(category) {
+  const menuData = JSON.parse(localStorage.getItem('menuData')) || [];
+  displayMenu(menuData, category);  // Tampilkan menu sesuai kategori yang dipilih
 }
 
 // Variabel untuk menyimpan item di keranjang sebagai objek dengan jumlah
@@ -163,21 +172,77 @@ function removeFromCart(itemId) {
   }
 }
 
-// Menutup modal keranjang
+// Fungsi untuk menutup modal keranjang
 function closeCart() {
   document.getElementById('cart-modal').classList.add('hidden');
+  document.getElementById('main-page').classList.remove('hidden');
 }
 
-// Fungsi untuk checkout dan mengirimkan data transaksi ke Telegram
+// Variabel untuk menyimpan pilihan pengiriman
+let deliveryOption = 'Antar';
+
+// Fungsi untuk memilih opsi pengiriman dan mengubah gaya tombol
+function selectDeliveryOption(option) {
+  deliveryOption = option;
+
+  // Menghapus kelas "selected" dari kedua tombol
+  document.getElementById('btn-antar').classList.remove('selected');
+  document.getElementById('btn-ambil').classList.remove('selected');
+
+  // Menambahkan kelas "selected" ke tombol yang dipilih
+  if (option === 'Antar') {
+    document.getElementById('btn-antar').classList.add('selected');
+  } else {
+    document.getElementById('btn-ambil').classList.add('selected');
+  }
+}
+
+// Fungsi untuk menampilkan modal konfirmasi pesanan
 function proceedCheckout() {
   const name = document.getElementById('user-name').value;
   const userClass = document.getElementById('user-class').value;
   const whatsapp = document.getElementById('user-whatsapp').value;
-  
+
   if (!name || !userClass || !whatsapp) {
     alert('Mohon lengkapi data pembeli.');
     return;
   }
+
+  // Tampilkan rincian pesanan di modal konfirmasi
+  const items = Object.values(cart);
+  const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  let confirmDetails = `
+    <p><strong>Nama:</strong> ${name}</p>
+    <p><strong>Kelas:</strong> ${userClass}</p>
+    <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+    <p><strong>Pengiriman:</strong> ${deliveryOption}</p>
+    <p><strong>Pesanan:</strong></p>
+    <ul>
+  `;
+  items.forEach(item => {
+    confirmDetails += `<li>${item.name} x ${item.quantity} - Rp${item.price * item.quantity}</li>`;
+  });
+  confirmDetails += `</ul><p><strong>Total:</strong> Rp${total}</p>`;
+  
+  document.getElementById('confirm-details').innerHTML = confirmDetails;
+
+  // Tampilkan modal konfirmasi
+  document.getElementById('cart-modal').classList.add('hidden');
+  document.getElementById('confirm-modal').classList.remove('hidden');
+}
+
+// Fungsi untuk menutup modal konfirmasi
+function closeConfirmModal() {
+  document.getElementById('confirm-modal').classList.add('hidden');
+  document.getElementById('main-page').classList.remove('hidden');
+}
+
+// Fungsi untuk menyelesaikan checkout dan mengirimkan data ke Telegram
+function finalizeCheckout() {
+  const name = document.getElementById('user-name').value;
+  const userClass = document.getElementById('user-class').value;
+  const whatsapp = document.getElementById('user-whatsapp').value;
 
   const items = Object.values(cart);
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -188,11 +253,13 @@ function proceedCheckout() {
     userClass,
     whatsapp,
     items,
-    total
+    total,
+    deliveryOption // Mengirim pilihan pengiriman
   };
+
   sendTransactionToTelegram(transaction);
   alert('Pesanan berhasil dikirim!');
-  closeCart();
+  closeConfirmModal();
   cart = {};
   localStorage.removeItem('cart');
 }
@@ -208,6 +275,7 @@ async function sendTransactionToTelegram(transaction) {
     *No. WhatsApp:* ${transaction.whatsapp}
     *Total:* Rp${transaction.total}
     *Pesanan:* ${transaction.items.map(item => `${item.name} x ${item.quantity}`).join(', ')}
+    *Pengiriman:* ${transaction.deliveryOption}
   `;
 
   await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -220,6 +288,7 @@ async function sendTransactionToTelegram(transaction) {
     })
   });
 }
+
 
 // Memuat data menu dari localStorage jika tersedia saat halaman pertama kali dibuka
 function initializeMenu() {

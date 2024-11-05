@@ -154,25 +154,6 @@
       box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .modal-content {
-      background: linear-gradient(to bottom right, #b2ebf2, #ce93d8); /* Gradasi pastel biru dan ungu */
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
-      border: 5px double #64b5f6; /* Border retro */
-    }
-
-    .button-cute {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.8rem;
-      background: linear-gradient(to right, #ffc1e3, #ffecb3); /* Pink pastel ke kuning pastel */
-      color: #333;
-      border: 4px double #ff4081; /* Warna dan border retro */
-      padding: 0.8rem 1.2rem;
-      box-shadow: 5px 5px 0px #ff4081; /* Efek kotak retro */
-      transition: transform 0.3s, background 0.3s;
-    }
-
     .button-cute:hover {
       transform: scale(1.08);
       background: linear-gradient(to right, #ff80ab, #ffc1e3); /* Warna hover */
@@ -226,15 +207,6 @@
       font-family: 'Press Start 2P', cursive;
     }
   
-    .cart-item {
-      background: linear-gradient(to bottom right, #e1bee7, #b2ebf2); /* Gradasi ungu pastel ke biru pastel */
-      padding: 10px;
-      border-radius: 10px;
-      border: 2px solid #64b5f6;
-      margin-bottom: 10px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-  
     .cart-item .font-retro {
       font-size: 0.7rem;
     }
@@ -243,15 +215,114 @@
       margin-left: 5px;
     }
 
-    .total-price {
+    .category-button {
+      display: inline-block;
+      margin: 0.5rem;
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to right, #ffecb3, #ffab91); /* Warna pastel yang lembut */
+      font-size: 0.8rem;
+      background: linear-gradient(to right, #ffecb3, #ffab91);
       color: #333;
-      padding: 0.8rem;
-      border-radius: 10px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-      margin-top: 10px;
-      text-shadow: 1px 1px 2px rgba(255, 102, 102, 0.4);
+      border: 3px solid #ff6f61;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .category-button:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-content {
+      background: linear-gradient(to bottom right, #b2ebf2, #ce93d8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+      border: 4px double #64b5f6;
+      width: 90vw; /* Sesuaikan lebar modal untuk mobile */
+      max-width: 400px; /* Batas lebar maksimal untuk modal */
+    }
+
+    /* Membatasi tinggi maksimum daftar item keranjang dengan scrollbar */
+    #cart-items {
+      max-height: 250px; /* Tentukan tinggi maksimum */
+      overflow-y: auto; /* Tambahkan scrollbar vertikal jika konten melebihi tinggi maksimum */
+      padding-right: 5px; /* Memberi ruang agar scroll tidak menutupi konten */
+    }
+    
+    .cart-item {
+      font-size: 0.9rem;
+      padding: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .total-price {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+    
+    .button-cute {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      background: linear-gradient(to right, #ffc1e3, #ffecb3); /* Pink pastel ke kuning pastel */
+      color: #333;
+      padding: 0.6rem 1rem;
+      border: 4px double #ff4081; /* Warna dan border retro */
+      box-shadow: 5px 5px 0px #ff4081; /* Efek kotak retro */
+      transition: transform 0.3s, background 0.3s;
+    }
+    
+    .delivery-option {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      margin: 0.3rem;
+    }
+    
+    .delivery-option.selected {
+      background-color: #ffecb3; /* Warna berbeda saat dipilih */
+      color: #333;
+      transform: scale(1.1); /* Membuat tombol lebih besar */
+    }
+    
+    /* Mengubah ukuran font dan elemen di dalam modal untuk layar kecil */
+    @media (max-width: 600px) {
+      .modal-content {
+        padding: 15px;
+        width: 90vw;
+        max-width: 360px;
+      }
+
+      .total-price {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+      }
+
+      .button-cute {
+        font-size: 0.7rem;
+        background: linear-gradient(to right, #ffc1e3, #ffecb3); /* Pink pastel ke kuning pastel */
+        color: #333;
+        border: 4px double #ff4081; /* Warna dan border retro */
+        padding: 0.8rem 1.2rem;
+        box-shadow: 5px 5px 0px #ff4081; /* Efek kotak retro */
+        transition: transform 0.3s, background 0.3s;
+      }
+
+      .delivery-option {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+        margin: 0.2rem;
+      }
+
+      .cart-item {
+        font-size: 0.8rem;
+        padding: 6px;
+      }
+
+      input[type="text"] {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
     }
 
     @keyframes slideUp {
@@ -309,6 +380,13 @@
       <p id="pantun" class="text-lg text-gray-700 italic mt-2 mb-4"></p>
     </header>
 
+     <!-- Tombol Kategori -->
+     <div class="category-buttons text-center mb-6">
+      <span class="category-button" onclick="filterMenu('Semua')">Semua</span>
+      <span class="category-button" onclick="filterMenu('Jajanan')">Jajanan</span>
+      <span class="category-button" onclick="filterMenu('Minuman')">Minuman</span>
+    </div>
+
     <!-- Container untuk daftar menu -->
     <div id="menu-container" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 px-4 mb-8">
       <!-- Menu items akan dimasukkan di sini oleh JavaScript -->
@@ -328,10 +406,30 @@
       <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full mb-3">
       <input type="text" id="user-class" placeholder="Kelas" class="w-full mb-3">
       <input type="text" id="user-whatsapp" placeholder="Nomor WhatsApp" class="w-full mb-4">
-      <button class="button-cute w-full mb-3" onclick="proceedCheckout()">Checkout Sekarang</button>
-      <button class="button-cute w-full" onclick="closeCart()">Batal</button>
+
+    <!-- Tombol Antar atau Ambil Sendiri -->
+    <div class="text-center mb-4">
+      <label class="font-retro text-lg mb-2 block">Pesanan di:</label>
+      <button id="btn-antar" class="delivery-option button" onclick="selectDeliveryOption('Antar')">Antar</button>
+      <button id="btn-ambil" class="delivery-option button" onclick="selectDeliveryOption('Ambil Sendiri')">Ambil Sendiri</button>
+    </div>
+
+    <button class="button-cute w-full mb-3" onclick="proceedCheckout()">Checkout Sekarang</button>
+    <button class="button-cute w-full" onclick="closeCart()">Batal</button>
     </div>
   </div>
+
+  <!-- Modal untuk Konfirmasi Pesanan -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="modal-content w-full max-w-lg relative text-center scale-up">
+      <h2 class="retro-title text-center mb-4">Konfirmasi Pesanan</h2>
+      <div id="confirm-details" class="mb-4 text-left font-retro"></div>
+      <p class="text-left text-lg font-retro mb-4">Apakah Anda yakin ingin melanjutkan?</p>
+      <button class="button-cute w-full mb-3" onclick="finalizeCheckout()">Ya, Kirim Pesanan</button>
+      <button class="button-cute w-full" onclick="closeConfirmModal()">Batal</button>
+    </div>
+  </div>
+
 
   <!-- Footer -->
   <footer class="footer">
