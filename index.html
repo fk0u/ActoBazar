@@ -6,22 +6,39 @@
   <title>Bazar XI PPLG 1</title>
   <!-- Tailwind CSS dan Font Retro -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
   <style>
-    /* Gaya Y2K dan Retro */
+    /* Gaya Y2K dan Retro dengan warna neon */
     body {
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to right, #fbc2eb, #a18cd1);
+      background: radial-gradient(circle at center, #e1bee7, #4fc3f7, #b2ebf2, #e1f5fe); /* Gradasi warna pastel neon */
       color: #333;
+      position: relative;
+      overflow-x: hidden; /* Menghindari scroll horizontal */
+      min-height: 100vh;
     }
+
+    /* Poligon grid untuk background futuristik */
+    .polygon-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      opacity: 0.2;
+      z-index: -1;
+    }
+
     .glass-box {
       backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.2);
-      border: 3px solid #ff006e;
+      background: rgba(255, 255, 255, 0.3);
+      border: 3px solid #9575cd;
       border-radius: 15px;
       padding: 20px;
-      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
     }
 
     .fade-in {
@@ -31,70 +48,212 @@
       animation: slideUp 0.7s ease-in-out;
     }
 
+    .scale-up {
+      animation: scaleUp 0.5s ease-in-out;
+    }
+
     .txt {
       font-family: 'Press Start 2P';
-      color: #ff006e;
-      text-shadow: 2px 2px #8338ec;
+      color: #ff80ab;
+      text-shadow: 2px 2px #7e57c2;
     }
 
     .txt1 {
-        font-family: 'Press Start 2P';
-        text-shadow: 2px 2px #d2b8f6;
-      }
+      font-family: 'Press Start 2P';
+      text-shadow: 2px 2px #b2ff59;
+    }
 
     .button {
       font-family: 'Press Start 2P', cursive;
       font-size: 0.8rem;
-      background: linear-gradient(to right, #ff9a9e, #fecfef);
+      background: linear-gradient(to right, #b3e5fc, #d1c4e9); /* Gradasi biru muda ke violet */
       color: #333;
-      border: 3px solid #ff006e;
+      border: 3px solid #9575cd; /* Border ungu muda */
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, background 0.2s;
+    }
+    
+    .button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #d1c4e9, #b3e5fc); /* Gradasi dibalik pada hover */
+    }
+
+    .buttonbuy {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      background: linear-gradient(to right, #b3e5fc, #ce93d8);
+      color: #333;
+      border: 3px solid #64b5f6;
       padding: 0.5rem 1rem;
       border-radius: 12px;
       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s;
     }
 
-    .buttonbuy {
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.8rem;
-        background: linear-gradient(to right, #ac75f8, #ceb2f7);
-        color: #333;
-        border: 3px solid #8338ec;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
-        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s;
-      }
-
-    .button:hover {
-      transform: scale(1.05);
-      background: linear-gradient(to right, #ff006e, #ff9a9e);
-    }
     .retro-card {
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-      border: 3px solid #ff006e;
+      background: linear-gradient(to right, #d1c4e9, #b3e5fc);
+      border: 3px solid #ff80ab;
       border-radius: 15px;
       padding: 15px;
-      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s;
     }
+
     .retro-card:hover {
       transform: scale(1.05);
     }
+
     .retro-title {
-      color: #ff006e;
-      font-size: 1.1rem;
+      color: #ff80ab;
+      font-size: 1.2rem;
+      font-family: 'Press Start 2P';
     }
+
     .retro-price {
-      color: #8338ec;
-      font-size: 0.9rem;
+      color: #64b5f6;
+      font-size: 1rem;
+      font-family: 'Press Start 2P';
     }
+
     .header-title {
-      font-family: 'Roboto', sans-serif; /* Menggunakan font Roboto untuk headline */
+      font-family: 'Orbitron', sans-serif;
       font-size: 2.5rem;
-      color: #ff006e;
-      text-shadow: 2px 2px #8338ec;
+      color: #9575cd;
+      text-shadow: 2px 2px #523684;
     }
+
+    input[type="text"] {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      padding: 10px;
+      border: 4px double #64b5f6; /* Border retro game */
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #333;
+      transition: all 0.3s;
+      box-shadow: 4px 4px 0px #64b5f6; /* Efek kotak retro */
+    }
+
+    input[type="text"]:focus {
+      border-color: #ff4081;
+      box-shadow: 4px 4px 0px #ff4081;
+      outline: none;
+    }
+
+    .footer {
+      font-family: 'Press Start 2P', cursive;
+      background: rgba(255, 255, 255, 0.15);
+      border-top: 2px solid #7c5db0;
+      padding: 20px;
+      text-align: center;
+      color: #9575cd;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content {
+      background: linear-gradient(to bottom right, #b2ebf2, #ce93d8); /* Gradasi pastel biru dan ungu */
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+      border: 5px double #64b5f6; /* Border retro */
+    }
+
+    .button-cute {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      background: linear-gradient(to right, #ffc1e3, #ffecb3); /* Pink pastel ke kuning pastel */
+      color: #333;
+      border: 4px double #ff4081; /* Warna dan border retro */
+      padding: 0.8rem 1.2rem;
+      box-shadow: 5px 5px 0px #ff4081; /* Efek kotak retro */
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .button-cute:hover {
+      transform: scale(1.08);
+      background: linear-gradient(to right, #ff80ab, #ffc1e3); /* Warna hover */
+    }
+
+    .button-delete-optimized {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      color: #ffffff; /* Teks putih agar kontras */
+      background: linear-gradient(to right, #ff6f91, #ffc400); /* Gradasi pink ke kuning pastel */
+      border: 3px solid #ff4081; /* Border retro warna pink cerah */
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px #ff4081; /* Glow halus di sekitar tombol */
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .button-delete-optimized::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s, transform 0.4s;
+      transform: scale(0.5);
+      pointer-events: none;
+    }
+  
+    .button-delete-optimized:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #ff4e7b, #ffca28); /* Warna hover lebih cerah */
+      box-shadow: 0 0 10px #ff4e7b; /* Shadow lebih cerah pada hover */
+    }
+  
+    .button-delete-optimized:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  
+    .button-delete-optimized:active {
+      transform: scale(1);
+      box-shadow: 1px 1px 3px #ff4081; /* Efek saat ditekan */
+    }
+  
+    .font-retro {
+      font-family: 'Press Start 2P', cursive;
+    }
+  
+    .cart-item {
+      background: linear-gradient(to bottom right, #e1bee7, #b2ebf2); /* Gradasi ungu pastel ke biru pastel */
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #64b5f6;
+      margin-bottom: 10px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .cart-item .font-retro {
+      font-size: 0.7rem;
+    }
+  
+    .cart-item button {
+      margin-left: 5px;
+    }
+
+    .total-price {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to right, #ffecb3, #ffab91); /* Warna pastel yang lembut */
+      color: #333;
+      padding: 0.8rem;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+      margin-top: 10px;
+      text-shadow: 1px 1px 2px rgba(255, 102, 102, 0.4);
+    }
+
     @keyframes slideUp {
       from {
         transform: translateY(100%);
@@ -105,9 +264,23 @@
         opacity: 1;
       }
     }
+
+    @keyframes scaleUp {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
-<body class="font-sans bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-gray-800">
+<body class="font-sans text-gray-800">
+
+  <!-- Background Grid -->
+  <div class="polygon-grid"></div>
 
   <!-- Audio Backsound -->
   <audio id="background-music" src="./assets/uploads/retro.mp3" autoplay loop></audio>
@@ -122,7 +295,7 @@
     <div class="glass-box shadow-lg w-full max-w-sm mx-auto text-center">
       <div id="greeting-animation" class="mb-4 w-full h-24 mx-auto"></div>
       <h1 class="text-3xl font-bold mb-2 header-title">Halo!</h1>
-      <p class="text-lg mb-4">Selamat datang di <span class="text-yellow-300 font-semibold">Bazar XI PPLG 1</span></p>
+      <p class="text-lg text-gray-700 font-semibold mb-4">Selamat datang di <span class="text-purple-400 font-semibold">Bazar XI PPLG 1</span></p>
       <button onclick="goToMenu()" class="mt-6 button">Lanjutkan</button>
     </div>
   </div>
@@ -131,7 +304,7 @@
   <div id="main-page" class="container mx-auto p-4 hidden slide-up text-center">
 
     <!-- Header Menu -->
-    <header class="text-center mb-6 mt-12"> <!-- Margin top ditambahkan -->
+    <header class="text-center mb-6 mt-12">
       <h1 class="header-title">Menu Bazar <span class="text-pink-500">XI PPLG 1</span></h1>
       <p id="pantun" class="text-lg text-gray-700 italic mt-2 mb-4"></p>
     </header>
@@ -149,16 +322,21 @@
 
   <!-- Modal untuk Detail Keranjang -->
   <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+    <div class="modal-content w-full max-w-lg relative text-center scale-up">
       <h2 class="retro-title text-center mb-4">Keranjang Pembelian</h2>
       <div id="cart-items" class="mb-4"></div>
-      <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full mb-2 p-2 border border-gray-300 rounded">
-      <input type="text" id="user-class" placeholder="Kelas" class="w-full mb-2 p-2 border border-gray-300 rounded">
-      <input type="text" id="user-whatsapp" placeholder="Nomor WhatsApp" class="w-full mb-4 p-2 border border-gray-300 rounded">
-      <button class="buttonbuy w-full" onclick="proceedCheckout()">Checkout Sekarang</button>
-      <button class="button w-full mt-3" onclick="closeCart()">Batal</button>
+      <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full mb-3">
+      <input type="text" id="user-class" placeholder="Kelas" class="w-full mb-3">
+      <input type="text" id="user-whatsapp" placeholder="Nomor WhatsApp" class="w-full mb-4">
+      <button class="button-cute w-full mb-3" onclick="proceedCheckout()">Checkout Sekarang</button>
+      <button class="button-cute w-full" onclick="closeCart()">Batal</button>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2024 Actone.PPLG. All Rights Reserved.
+  </footer>
 
   <script src="app.js"></script>
 </body>

@@ -12,5 +12,12 @@
     "image": "crispy_potato_balls.webp",
     "price": 15000,
     "status": "Habis"
+  },
+  {
+    "id": "3",
+    "name": "Pink Lava",
+    "image": "pink_lava.png",
+    "price": 5000,
+    "status": "Habis"
   }
 ]

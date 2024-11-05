@@ -111,14 +111,30 @@ function openCart() {
   document.getElementById('cart-modal').classList.remove('hidden');
   const cartItems = document.getElementById('cart-items');
   const items = Object.values(cart);
+  let totalPrice = 0;
+
+  // Menghitung total harga
+  items.forEach(item => {
+    totalPrice += item.price * item.quantity;
+  });
+
+  // Menampilkan item dalam keranjang dan total harga
   cartItems.innerHTML = items.map(item => `
-    <div class="flex justify-between items-center mb-2">
-      <span>${item.name} x ${item.quantity}</span>
-      <span>Rp${item.price * item.quantity}</span>
-      <button onclick="removeFromCart('${item.id}')" class="bg-red-500 text-white px-2 py-1 rounded ml-2 hover:bg-red-600">Hapus</button>
+    <div class="cart-item flex flex-col items-start mb-2 p-2 border-2 border-pink-400 rounded-lg bg-white bg-opacity-30 shadow-md">
+      <span class="font-retro text-lg">${item.name} x ${item.quantity}</span>
+      <span class="font-retro text-sm mt-1">Rp${item.price * item.quantity}</span>
+      <button onclick="removeFromCart('${item.id}')" class="button-delete-optimized mt-2 self-end">Hapus</button>
     </div>
   `).join('');
+
+  // Menambahkan bagian total harga
+  cartItems.innerHTML += `
+    <div class="total-price text-center font-retro mt-4 p-2 border-t-2 border-pink-400">
+      <span class="text-lg font-bold">Total: Rp${totalPrice}</span>
+    </div>
+  `;
 }
+
 
 // Fungsi untuk menghapus item dari keranjang
 function removeFromCart(itemId) {
