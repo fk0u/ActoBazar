@@ -308,7 +308,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 // Nonaktifkan tombol shortcut tertentu
 document.onkeydown = function(e) {
-  if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'I')) {
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'I' || e.key === 'i' || e.key === 'c' || e.key === 'C' || e.key === 'a' || e.key === 'A')) {
     e.preventDefault();
     alert("Hayooo, jangan coba-coba buka inspect element ya!");
   }
