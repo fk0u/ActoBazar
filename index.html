@@ -24,6 +24,13 @@
       box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     }
 
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .slide-up {
+      animation: slideUp 0.7s ease-in-out;
+    }
+
     .txt {
       font-family: 'Press Start 2P';
       color: #ff006e;
@@ -83,9 +90,20 @@
       font-size: 0.9rem;
     }
     .header-title {
+      font-family: 'Roboto', sans-serif; /* Menggunakan font Roboto untuk headline */
       font-size: 2.5rem;
       color: #ff006e;
       text-shadow: 2px 2px #8338ec;
+    }
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
