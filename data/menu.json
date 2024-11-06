@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Indonesian Chicken Onigiri",
+    "name": "Nasi Kepal",
     "category": "Jajanan",
     "image": "nasi_kepal.png",
     "price": 8000,
@@ -10,7 +10,7 @@
   },
   {
     "id": "2",
-    "name": "Magic Iced Matcha Potion",
+    "name": "Iced Matcha Potion",
     "category": "Minuman",
     "image": "matcha.jpg",
     "price": 7000,
@@ -19,7 +19,7 @@
   },
   {
     "id": "3",
-    "name": "Enchanted Iced Chocolate Potion",
+    "name": "Iced Chocolate Potion",
     "category": "Minuman",
     "image": "cocoa.jpg",
     "price": 8000,
