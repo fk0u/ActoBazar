@@ -444,10 +444,17 @@
     </div>
   </div>
 
+  <!-- Tombol keranjang di bagian bawah -->
+  <div id="total-popup" class="fixed bottom-0 right-0 m-4 hidden">
+    <button class="button" onclick="openCart()">Keranjang Saya</button>
+  </div>
+</div>
+
   <!-- Modal untuk Detail Keranjang -->
   <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
     <div class="modal-content w-full max-w-lg relative text-center scale-up">
       <h2 class="retro-title text-center mb-4">Keranjang Pembelian</h2>
+      <button onclick="closeCart()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 font-bold text-xl">✖</button>
       <div id="cart-items" class="mb-4"></div>
       <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full mb-3">
       <input type="text" id="user-class" placeholder="Kelas" class="w-full mb-3">
@@ -461,7 +468,6 @@
     </div>
 
     <button class="button-cute w-full mb-3" onclick="proceedCheckout()">Checkout Sekarang</button>
-    <button class="button-cute w-full" onclick="closeCart()">Batal</button>
     </div>
   </div>
 

@@ -193,7 +193,6 @@ function removeFromCart(itemId) {
   }
 }
 
-
 // Menampilkan modal konfirmasi "berhasil ditambahkan ke keranjang"
 function showAddToCartModal(itemName) {
   const cartMessage = document.getElementById("cart-message");
