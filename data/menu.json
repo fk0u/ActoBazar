@@ -13,7 +13,7 @@
     "name": "Iced Matcha Potion",
     "category": "Minuman",
     "image": "matcha.jpg",
-    "price": 7000,
+    "price": 8000,
     "status": "Tersedia",
     "description": "Minuman matcha dingin yang membawa ketenangan dan kesegaran dalam setiap tegukan. Terbuat dari bubuk matcha premium yang halus dan dicampur dengan susu serta sedikit es untuk kesejukan maksimal. Cocok untuk para pecinta teh hijau yang mencari minuman yang menenangkan."
   },
@@ -22,7 +22,7 @@
     "name": "Iced Chocolate Potion",
     "category": "Minuman",
     "image": "cocoa.jpg",
-    "price": 8000,
+    "price": 7000,
     "status": "Tersedia",
     "description": "Minuman cokelat dingin yang memikat hati. Kaya rasa cokelat dengan sentuhan creamy, dicampur dengan es yang memberikan kesegaran. Cocok untuk menambah semangat di tengah hari atau sebagai teman bersantai kapan saja."
   },
