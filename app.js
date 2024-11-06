@@ -8,6 +8,9 @@ lottie.loadAnimation({
   path: 'https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json'
 });
 
+let selectedItemId = null;
+let selectedItemQuantity = 0;
+
 // Memulai dan mengatur kontrol untuk musik
 const backgroundMusic = document.getElementById('background-music');
 let musicPlaying = true;
@@ -84,12 +87,47 @@ function saveMenuData(menuData) {
   localStorage.setItem('menuData', JSON.stringify(menuData));
 }
 
-// Menampilkan menu di halaman utama berdasarkan kategori
+// Fungsi untuk menampilkan detail modal menu
+function showMenuDetailModal(itemId) {
+  const menuData = JSON.parse(localStorage.getItem('menuData')) || [];
+  const item = menuData.find(m => m.id === itemId);
+
+  if (item) {
+    document.getElementById("menu-detail-image").src = `./assets/uploads/${item.image}`;
+    document.getElementById("menu-detail-name").innerText = item.name;
+    document.getElementById("menu-detail-price").innerText = `Harga: Rp${item.price}`;
+    document.getElementById("menu-detail-description").innerText = item.description;
+    document.getElementById("menu-quantity").innerText = 0;
+
+    // Periksa status item
+    const addToCartButton = document.getElementById("add-to-cart-button");
+    if (item.status === "Habis") {
+      addToCartButton.innerText = "Habis";
+      addToCartButton.disabled = true;
+      addToCartButton.classList.add("opacity-50", "cursor-not-allowed");
+    } else {
+      addToCartButton.innerText = "Tambahkan ke Keranjang";
+      addToCartButton.disabled = false;
+      addToCartButton.classList.remove("opacity-50", "cursor-not-allowed");
+    }
+
+    // Tampilkan modal
+    document.getElementById("menu-detail-modal").classList.remove("hidden");
+
+    // Simpan ID item yang sedang ditampilkan
+    selectedItemId = itemId;
+  }
+}
+
+function closeMenuDetailModal() {
+  document.getElementById("menu-detail-modal").classList.add("hidden");
+}
+
+// Fungsi untuk menampilkan menu di halaman utama
 function displayMenu(menuData, category = "Semua") {
   const menuContainer = document.getElementById('menu-container');
   menuContainer.innerHTML = '';
 
-  // Filter menu sesuai kategori
   const filteredMenu = category === "Semua" ? menuData : menuData.filter(item => item.category === category);
 
   filteredMenu.forEach(item => {
@@ -99,9 +137,8 @@ function displayMenu(menuData, category = "Semua") {
       <img src="./assets/uploads/${item.image}" alt="${item.name}" class="w-full h-32 object-cover mb-2 rounded-lg">
       <h3 class="txt retro-title mb-2">${item.name}</h3>
       <p class="txt1 retro-price mb-4">Harga: Rp${item.price}</p>
-      <button class="buttonbuy ${item.status === "Habis" ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"}"
-        onclick="addToCart('${item.id}')"
-        ${item.status === "Habis" ? "disabled" : ""}>${item.status === "Habis" ? "Habis" : "Tambah ke Keranjang"}</button>
+      <button class="buttonbuy hover:bg-blue-600"
+        onclick="showMenuDetailModal('${item.id}')">Lihat Detail</button>
     `;
     menuContainer.appendChild(menuCard);
   });
@@ -110,7 +147,79 @@ function displayMenu(menuData, category = "Semua") {
 // Fungsi untuk filter menu berdasarkan kategori
 function filterMenu(category) {
   const menuData = JSON.parse(localStorage.getItem('menuData')) || [];
-  displayMenu(menuData, category);  // Tampilkan menu sesuai kategori yang dipilih
+  displayMenu(menuData, category);
+}
+
+function updateCartButtonVisibility() {
+  const totalPopup = document.getElementById('total-popup');
+  if (Object.keys(cart).length > 0) {
+    totalPopup.classList.remove('hidden');
+  } else {
+    totalPopup.classList.add('hidden');
+  }
+}
+
+// Panggil `updateCartButtonVisibility` setiap kali item ditambahkan atau dihapus
+function addToCartFromDetail() {
+  if (selectedItemQuantity > 0 && selectedItemId) {
+    const menuData = JSON.parse(localStorage.getItem('menuData')) || [];
+    const item = menuData.find(m => m.id === selectedItemId);
+
+    if (item) {
+      if (cart[selectedItemId]) {
+        cart[selectedItemId].quantity += selectedItemQuantity;
+      } else {
+        cart[selectedItemId] = { ...item, quantity: selectedItemQuantity };
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showAddToCartModal(item.name);
+      updateCartButtonVisibility(); // Tampilkan tombol "Keranjang Saya"
+    }
+
+    selectedItemQuantity = 0;
+    document.getElementById("menu-quantity").innerText = 0;
+    closeMenuDetailModal();
+  } else {
+    alert("Pilih jumlah item terlebih dahulu.");
+  }
+}
+
+function removeFromCart(itemId) {
+  if (cart[itemId]) {
+    delete cart[itemId];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    openCart(); // Refresh tampilan keranjang setelah menghapus item
+    updateCartButtonVisibility(); // Update visibilitas tombol "Keranjang Saya"
+  }
+}
+
+
+// Menampilkan modal konfirmasi "berhasil ditambahkan ke keranjang"
+function showAddToCartModal(itemName) {
+  const cartMessage = document.getElementById("cart-message");
+  cartMessage.innerHTML = `<span class="txt retro-title item-name">${itemName}</span> berhasil ditambahkan ke keranjang!`;
+  document.getElementById("add-to-cart-modal").classList.remove("hidden");
+
+  setTimeout(() => {
+    closeAddToCartModal();
+  }, 2000);
+}
+
+function closeAddToCartModal() {
+  document.getElementById("add-to-cart-modal").classList.add("hidden");
+}
+
+// Fungsi untuk memanipulasi jumlah item dalam modal
+function increaseQuantity() {
+  selectedItemQuantity++;
+  document.getElementById("menu-quantity").innerText = selectedItemQuantity;
+}
+
+function decreaseQuantity() {
+  if (selectedItemQuantity > 0) {
+    selectedItemQuantity--;
+    document.getElementById("menu-quantity").innerText = selectedItemQuantity;
+  }
 }
 
 // Variabel untuk menyimpan item di keranjang sebagai objek dengan jumlah
@@ -129,7 +238,9 @@ function addToCart(itemId) {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById('total-popup').classList.remove('hidden');
-    alert(`${item.name} berhasil ditambahkan ke keranjang!`);
+
+    // Memanggil fungsi showAddToCartModal untuk menampilkan pop-up konfirmasi
+    showAddToCartModal(item.name);
   }
 }
 
