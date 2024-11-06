@@ -3,6 +3,21 @@
     "id": "1",
     "name": "Indonesian Chicken Onigiri",
     "category": "Jajanan",
+<<<<<<< HEAD
+    "image": "nasi_kepal.png",
+    "price": 8000,
+    "status": "Habis",
+    "description": "Onigiri dengan sentuhan Indonesia yang unik. Dibuat dari nasi hangat yang dibentuk dan diberi isian ayam berbumbu khas Indonesia. Cocok untuk camilan atau makanan ringan yang praktis, lezat, dan mengenyangkan."
+  },
+  {
+    "id": "2",
+    "name": "Magic Iced Matcha Potion",
+    "category": "Minuman",
+    "image": "matcha.jpg",
+    "price": 7000,
+    "status": "Habis",
+    "description": "Minuman matcha dingin yang membawa ketenangan dan kesegaran dalam setiap tegukan. Terbuat dari bubuk matcha premium yang halus dan dicampur dengan susu serta sedikit es untuk kesejukan maksimal. Cocok untuk para pecinta teh hijau yang mencari minuman yang menenangkan."
+=======
     "image": "udang_keju.webp",
     "price": 10000,
     "status": "Habis"
@@ -14,14 +29,22 @@
     "image": "crispy_potato_balls.webp",
     "price": 10000,
     "status": "Habis"
+>>>>>>> 5087f3e31f2dc1604fcc3266fda02a685dc1daf7
   },
   {
     "id": "3",
     "name": "Enchanted Iced Chocolate Potion",
     "category": "Minuman",
+<<<<<<< HEAD
+    "image": "cocoa.jpg",
+    "price": 8000,
+    "status": "Habis",
+    "description": "Minuman cokelat dingin yang memikat hati. Kaya rasa cokelat dengan sentuhan creamy, dicampur dengan es yang memberikan kesegaran. Cocok untuk menambah semangat di tengah hari atau sebagai teman bersantai kapan saja."
+=======
     "image": "pink_lava.png",
     "price": 6000,
     "status": "Habis"
+>>>>>>> 5087f3e31f2dc1604fcc3266fda02a685dc1daf7
   },
   {
     "id": "4",
@@ -29,6 +52,20 @@
     "category": "Jajanan",
     "image": "stik_bawang.jpg",
     "price": 7000,
+<<<<<<< HEAD
+    "status": "Habis",
+    "description": "Camilan gurih dan renyah berupa stik bawang, dibuat dari adonan tepung yang diberi bumbu bawang khas dan digoreng hingga krispi. Rasanya yang gurih dan renyah membuatnya sulit untuk berhenti mengunyah. Ideal sebagai teman ngemil atau pelengkap makan."
+  },
+  {
+    "id": "5",
+    "name": "Fruit Salad",
+    "category": "Jajanan",
+    "image": "salad.jpg",
+    "price": 8000,
+    "status": "Habis",
+    "description": "Salad buah segar yang terdiri dari potongan buah-buahan pilihan seperti apel, anggur, melon, dan stroberi, dicampur dengan saus yogurt yang manis dan segar. Cocok untuk yang ingin ngemil sehat dan segar, penuh dengan vitamin dan kebaikan alami buah-buahan."
+=======
     "status": "Habis"
+>>>>>>> 5087f3e31f2dc1604fcc3266fda02a685dc1daf7
   }
 ]
