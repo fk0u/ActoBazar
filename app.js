@@ -38,13 +38,47 @@ function startMusic() {
 // Memanggil startMusic saat halaman selesai dimuat
 window.addEventListener('DOMContentLoaded', startMusic);
 
+// Tambahkan fungsi untuk menampilkan modal pop-up ketika waktu di luar jam operasional
+function showClosedPopup() {
+  // Membuat elemen modal secara dinamis
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modal.innerHTML = `
+    <div class="modal-content w-full max-w-md text-center p-4">
+      <p class="text-lg txt1 font-retro text-pink-500 mb-4">Stand Bazar telah Tutup, Terimakasih Telah Berbelanja di Stand Bazar XI PPLG 1, Bertemu di Next Bazar yaa!</p>
+      <button onclick="closeModal()" class="button-cute w-full">OK</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+// Fungsi untuk menutup modal pop-up
+function closeModal() {
+  const modal = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+  if (modal) {
+    modal.remove();
+  }
+}
+
 // Modifikasi fungsi goToMenu untuk pengecekan waktu
 function goToMenu() {
+  const currentTime = new Date();
+  const currentHours = currentTime.getUTCHours() + 8; // WITA (UTC+8)
+
+  // Rentang waktu operasional
+  const startHour = 7;
+  const endHour = 13;
+
+  // Jika waktu berada di luar jam operasional, tampilkan modal pop-up
+  if (currentHours < startHour || currentHours >= endHour) {
+    showClosedPopup();
+  } else {
     // Jika dalam rentang waktu, tampilkan halaman utama
     document.getElementById('greeting-page').classList.add('hidden');
     document.getElementById('main-page').classList.remove('hidden');
     loadMenu();
     showRandomPantun();
+  }
 }
 
 // Pantun acak tentang menu bazar

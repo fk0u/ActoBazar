@@ -5,7 +5,7 @@
     "category": "Jajanan",
     "image": "nasi_kepal.png",
     "price": 8000,
-    "status": "Tersedia",
+    "status": "Habis",
     "description": "Mirip dengan Burger Nasi. Dibuat dari nasi hangat yang dibentuk dan diberi isian ayam suwir berbumbu khas Indonesia. Cocok untuk camilan atau makanan ringan yang praktis, lezat, dan mengenyangkan."
   },
   {
@@ -14,7 +14,7 @@
     "category": "Minuman",
     "image": "matcha.jpg",
     "price": 8000,
-    "status": "Tersedia",
+    "status": "Habis",
     "description": "Minuman matcha dingin yang membawa ketenangan dan kesegaran dalam setiap tegukan. Terbuat dari bubuk matcha premium yang halus dan dicampur dengan susu serta sedikit es untuk kesejukan maksimal. Cocok untuk para pecinta teh hijau yang mencari minuman yang menenangkan."
   },
   {
@@ -23,7 +23,7 @@
     "category": "Minuman",
     "image": "cocoa.jpg",
     "price": 7000,
-    "status": "Tersedia",
+    "status": "Habis",
     "description": "Minuman cokelat dingin yang memikat hati. Kaya rasa cokelat dengan sentuhan creamy, dicampur dengan es yang memberikan kesegaran. Cocok untuk menambah semangat di tengah hari atau sebagai teman bersantai kapan saja."
   },
   {
@@ -32,7 +32,7 @@
     "category": "Jajanan",
     "image": "stik_bawang.jpg",
     "price": 7000,
-    "status": "Tersedia",
+    "status": "Habis",
     "description": "Camilan gurih dan renyah berupa stik bawang, dibuat dari adonan tepung yang diberi bumbu bawang khas dan digoreng hingga krispi. Rasanya yang gurih dan renyah membuatnya sulit untuk berhenti mengunyah. Ideal sebagai teman ngemil atau pelengkap makan."
   },
   {
@@ -41,7 +41,7 @@
     "category": "Jajanan",
     "image": "salad.jpg",
     "price": 10000,
-    "status": "Tersedia",
+    "status": "Habis",
     "description": "Salad buah segar yang terdiri dari potongan buah-buahan pilihan seperti apel, anggur, melon, dan stroberi, dicampur dengan saus yogurt yang manis dan segar. Cocok untuk yang ingin ngemil sehat dan segar, penuh dengan vitamin dan kebaikan alami buah-buahan."
   }
 ]
